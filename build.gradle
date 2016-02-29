@@ -1,0 +1,46 @@
+
+	apply plugin:"war"
+	
+	project.webAppDirName="WebContent"
+
+	repositories {
+   	
+   		mavenCentral()
+   		maven{
+    		//restlet
+    		url  "http://maven.restlet.org"
+  		}
+	}
+	
+	
+		
+	dependencies {
+	
+		compile "log4j:log4j:1.2.17"
+		compile "org.jboss.resteasy:resteasy-jackson-provider:3.0.11.Final"
+		compile "org.jboss.resteasy:resteasy-jaxrs:3.0.11.Final"
+		compile "org.jboss.resteasy:resteasy-jaxb-provider:2.2.0.GA"
+		compile "com.google.code.gson:gson:2.3.1"		
+		compile "com.thetransactioncompany:cors-filter:2.1"
+			
+  		providedCompile "javax.servlet:servlet-api:2.5"
+	
+    
+}
+	
+	
+	war {
+		baseName="RestletConverter"
+		
+   	    
+		
+	}	
+
+	task copyToLib(type: Copy) {
+    // into "build/lib"
+    into "${project.webAppDirName}/WEB-INF/lib"
+    from configurations.compile
+	}
+	
+		
+
